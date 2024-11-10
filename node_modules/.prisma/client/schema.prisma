@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// Generate Prisma Client
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define PostgreSQL as the datasource
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model
+model User {
+  id        Int       @id @default(autoincrement())
+  firstName String    @db.VarChar(50)
+  lastName  String    @db.VarChar(50)
+  password  String    @db.VarChar(30)
+  email     String    @unique @db.VarChar(30)
+  teamId    Int?      @map("team_id")
+  teams     Team[]    @relation("UserTeams") // A user can be in multiple teams
+  tasks     Task[]    @relation("UserTasks") // A user can have multiple tasks
+  comments  Comment[] @relation("UserComments") // A user can have multiple comments
+}
+
+// Task model
+model Task {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(50)
+  description String?
+  priority    String    @db.VarChar(20)
+  status      String    @db.VarChar(30)
+  dueDate     DateTime? @map("due_date")
+  recId       Int?      @map("rec_id")
+  guideline   String?   @db.VarChar(50)
+  userId      Int       @map("user_id")
+  user        User      @relation("UserTasks", fields: [userId], references: [id]) // Many tasks belong to one user
+  comments    Comment[] @relation("TaskComments") // A task can have multiple comments
+}
+
+// Team model
+model Team {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(50)
+  description String?
+  userId      Int?    @map("user_id")
+  users       User[]  @relation("UserTeams") // A team can have multiple users
+}
+
+// Comment model
+model Comment {
+  id          Int     @id @default(autoincrement())
+  description String?
+  taskId      Int     @map("task_id")
+  userId      Int     @map("user_id")
+  task        Task    @relation("TaskComments", fields: [taskId], references: [id]) // Many comments belong to one task
+  user        User    @relation("UserComments", fields: [userId], references: [id]) // Many comments belong to one user
+}
