@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, NavLink } from "react-router-dom";
 import Datatable from "./Datatable";
 import TeamDatatable from "./TeamDatatable";
-
+import Genreport from "./Genreport";
 const linkStyle = {
   textDecoration: "none",
 
@@ -109,7 +109,7 @@ const Home = () => {
 
         <Datatable cols={taskCol} data={tasks} heading="Task" />
         <TeamDatatable cols={teamCol} data={teams} heading="Team" />
-
+        <Genreport taskData={tasks} />
         <ToastContainer />
       </div>
     </>

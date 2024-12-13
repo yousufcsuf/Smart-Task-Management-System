@@ -21,10 +21,12 @@ body {
 
 .flex-container {
   display: flex;
-  width: 960px;
+  width: 1080px;
   justify-content: flex-end;
   font-size: 30px;
   background-color: aqua;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .flex-container li {

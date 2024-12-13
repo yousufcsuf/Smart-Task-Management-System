@@ -1,5 +1,6 @@
 const TeamModel = require("../Models/Team");
 const UserModel = require("../Models/User");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 //HERE you write the logic for the routes
 const createteam = async (req, res) => {
   try {
@@ -75,4 +76,39 @@ const allusers = async (req, res) => {
     });
   }
 };
-module.exports = { createteam, allteams, allusers };
+
+const genReport = async (req, res) => {
+  try {
+    console.log("req.body", req.body);
+    const { guidline } = req.body;
+    console.log("queries for guideline", guidline);
+
+    const genAI = new GoogleGenerativeAI(
+      "AIzaSyDU6grPoQSJdXfwMwVpBvROcKg28AEmN2o"
+    );
+
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const query = guidline.description;
+    const prompt =
+      query +
+      " please make it a step by step instruction and number them, dont make it more than 5lines ";
+
+    const result = await model.generateContent(prompt);
+    const genReport = result.response.text();
+
+    //response
+    res.status(201).json({
+      message: "sent generative AI Assistant",
+      success: true,
+      data: genReport,
+    });
+  } catch (err) {
+    //response
+    console.log(err);
+    res.status(500).json({
+      message: err,
+      success: false,
+    });
+  }
+};
+module.exports = { createteam, allteams, allusers, genReport };
