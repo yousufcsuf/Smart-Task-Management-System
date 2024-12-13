@@ -29,7 +29,7 @@ const Task = () => {
       status: data.status,
       description: data.description,
       dueDate: data.dueDate,
-      teamOwner: user,
+      taskOwner: user,
     };
     console.log(passJson);
     const url = "http://localhost:8080/tasks/createtask";

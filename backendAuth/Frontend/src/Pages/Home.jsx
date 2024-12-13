@@ -25,12 +25,13 @@ const Home = () => {
     col2: "Description",
     col3: "Status",
     col4: "Due Date",
+    col5: "Task Owner",
   };
   const teamCol = {
     col1: "Name",
     col2: "Description",
-    col3: "users",
-    col4: "taskOwner",
+    col3: "Users",
+    col4: "Team Owner",
   };
 
   //FOR FETCHING TASKS

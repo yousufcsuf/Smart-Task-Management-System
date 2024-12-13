@@ -84,7 +84,7 @@ const genReport = async (req, res) => {
     console.log("queries for guideline", guidline);
 
     const genAI = new GoogleGenerativeAI(
-      "AIzaSyDU6grPoQSJdXfwMwVpBvROcKg28AEmN2o"
+      "AIzaSyBkk819n8FXtsKt8yKNZK5zxso6wu3_4ZQ"
     );
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });

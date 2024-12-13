@@ -58,7 +58,7 @@ const Genreport = (props) => {
         <table>
           <thead>
             <tr>
-              <th>AI Assitant</th>
+              <th>AI Assistant</th>
             </tr>
           </thead>
           <tbody>
@@ -78,13 +78,13 @@ const Genreport = (props) => {
                     ></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="Generate Report" />
+                    <input type="submit" value="Generate Guidelines" />
                   </div>
                 </form>
               </td>
             </tr>
             <tr>
-              <td>Ai guidelines: {report}</td>
+              <td>AI guidelines: {report}</td>
             </tr>
             <div></div>
             <div></div>

@@ -40,7 +40,7 @@ const TeamDatatable = (props) => {
                     return <li>{user}</li>;
                   })}
                 </td>
-                <td>{row.taskOwner}</td>
+                <td>{row.teamOwner}</td>
               </tr>
             ))}
           </tbody>

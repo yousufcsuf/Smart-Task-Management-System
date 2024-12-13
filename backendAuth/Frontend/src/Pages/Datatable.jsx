@@ -42,6 +42,7 @@ const Datatable = (props) => {
               <th>{props.cols.col2}</th>
               <th>{props.cols.col3}</th>
               <th>{props.cols.col4}</th>
+              <th>{props.cols.col5}</th>
             </tr>
           </thead>
           <tbody>
@@ -51,6 +52,7 @@ const Datatable = (props) => {
                 <td>{row.description}</td>
                 <td>{row.status}</td>
                 <td>{row.dueDate}</td>
+                <td>{row.taskOwner}</td>
               </tr>
             ))}
           </tbody>
